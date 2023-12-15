@@ -1,10 +1,10 @@
 import { Center, Heading} from "@chakra-ui/react";
 
-const Header = () => {
+const NavBar = () => {
   return (
     <>
       <Center>
-        <Heading>
+        <Heading style={{fontFamily: "Quicksand"}}>
            Message Generator
         </Heading>
       </Center>
@@ -12,4 +12,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

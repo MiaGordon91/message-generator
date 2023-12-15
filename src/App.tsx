@@ -1,6 +1,6 @@
 import { Grid, GridItem, Hide} from '@chakra-ui/react'
-import Header from './components/Header'
-import CardRecipient from './components/CardRecipient'
+import NavBar from './components/NavBar'
+import CardRecipientList from './components/CardRecipientList'
 
 function App() {
 
@@ -10,22 +10,21 @@ function App() {
     <GridItem 
       as='header'
       pl='2' 
-      bg='#FFFFFF'
       color='blackAlpha.900'
       fontSize={{ lg: "28px" }}
       colSpan={{ base: 3, lg: 3, xl: 3}}
       p= "12px"
     >
-       <Header />
+       <NavBar />
     </GridItem>
 
     <GridItem 
-      as='aside'
-      bg="#2f00c9"
-      minHeight= {{ md: "100vh" }}
-      p= {{ lg: "12px", xl: "24px"}}
+      // as='aside'
+      // color='blackAlpha.900'
+      // minHeight= {{ md: "100vh" }}
+      // p= {{ lg: "12px", xl: "24px"}}
     >
-       <CardRecipient />
+       <CardRecipientList />
     </GridItem>
 
   
