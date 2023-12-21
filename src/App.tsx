@@ -11,23 +11,27 @@ function App() {
   const [selectedRecipients, setSelectedRecipient] = useState('');
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" bg="gray.50">
+    <Grid 
+      templateColumns={{
+        base: "1fr",
+        lg: "repeat(3, 1fr)"
+      }}
+      bg="gray.50"
+    >
 
     <GridItem 
       as='header'
       pl='2' 
       color='blackAlpha.900'
       fontSize={{ lg: "28px" }}
-      colSpan={{ base: 1, lg: 3, xl: 3}}
+      colSpan={{ base: 1, lg: 3}}
       p= "12px"
     >
        <NavBar />
     </GridItem>
 
     <GridItem 
-      // as='aside'
-      // color='blackAlpha.900'
-      minHeight= {{ md: "100vh" }}
+      as='aside'
       p= {{ lg: "12px", xl: "24px"}}
     >
        <CardRecipientList cardRecipients={cardRecipients} onSelectItem={(recipient) => setSelectedRecipient(recipient)}/>
@@ -37,7 +41,7 @@ function App() {
     <GridItem 
       as='main'
       bg="#E0E0E0"
-      colSpan={{ base: 2, lg: 2, xl: 2}}
+      colSpan={{ base: 1, lg: 2}}
       color='blackAlpha.900'
       minHeight="100vh" 
     >
@@ -48,8 +52,7 @@ function App() {
     <GridItem 
       bg="#000000"
       as='footer'
-      minWidth= "100vh"
-      colSpan={{md: 3, lg: 3, xl: 3}}
+      colSpan={{md: 3}}
       color='blackAlpha.900'
     >
       Footer
