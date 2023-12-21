@@ -1,5 +1,4 @@
 import { Button, VStack } from "@chakra-ui/react";
-import { useState } from "react";
 
 interface Props {
   cardRecipients: string[];
@@ -7,7 +6,6 @@ interface Props {
 }
 
 function CardRecipientList({ cardRecipients, onSelectItem }: Props) {
-  const [selectedRecipients, setSelectedRecipient] = useState("");
 
   return (
     <VStack spacing="24px" paddingTop="10px">
@@ -17,7 +15,6 @@ function CardRecipientList({ cardRecipients, onSelectItem }: Props) {
           colorScheme="blackAlpha"
           key={recipient}
           onClick={() => {
-            setSelectedRecipient(recipient);
             onSelectItem(recipient);
           }}>
           {recipient}
