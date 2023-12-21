@@ -1,8 +1,14 @@
 import { Grid, GridItem, Hide} from '@chakra-ui/react'
 import NavBar from './components/NavBar'
 import CardRecipientList from './components/CardRecipientList'
+import MessageBox from './components/MessageBox'
+import { useState } from 'react';
 
 function App() {
+
+  const cardRecipients = ["Mum", "Dad", "Sister", "Brother"];
+
+  const [selectedRecipients, setSelectedRecipient] = useState('');
 
   return (
     <Grid templateColumns="repeat(3, 1fr)" bg="gray.50">
@@ -12,7 +18,7 @@ function App() {
       pl='2' 
       color='blackAlpha.900'
       fontSize={{ lg: "28px" }}
-      colSpan={{ base: 3, lg: 3, xl: 3}}
+      colSpan={{ base: 1, lg: 3, xl: 3}}
       p= "12px"
     >
        <NavBar />
@@ -21,10 +27,10 @@ function App() {
     <GridItem 
       // as='aside'
       // color='blackAlpha.900'
-      // minHeight= {{ md: "100vh" }}
-      // p= {{ lg: "12px", xl: "24px"}}
+      minHeight= {{ md: "100vh" }}
+      p= {{ lg: "12px", xl: "24px"}}
     >
-       <CardRecipientList />
+       <CardRecipientList cardRecipients={cardRecipients} onSelectItem={(recipient) => setSelectedRecipient(recipient)}/>
     </GridItem>
 
   
@@ -35,7 +41,7 @@ function App() {
       color='blackAlpha.900'
       minHeight="100vh" 
     >
-      Main
+      <MessageBox selectedCardRecipient={selectedRecipients}/>
     </GridItem>
 
     <Hide below="sm">

@@ -1,17 +1,30 @@
-import { Button, ButtonGroup, VStack } from "@chakra-ui/react";
+import { Button, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 
-const cardRecipients = ["Mum", "Dad", "Sister", "Brother"];
+interface Props {
+  cardRecipients: string[];
+  onSelectItem: (recipient: string) => void;
+}
 
-const CardRecipientList = () => {
+function CardRecipientList({ cardRecipients, onSelectItem }: Props) {
+  const [selectedRecipients, setSelectedRecipient] = useState("");
+
   return (
     <VStack spacing="24px" paddingTop="10px">
+
       {cardRecipients.map((recipient) => (
-        <Button colorScheme="blackAlpha" key={recipient} onClick={() => console.log(recipient)}>
+        <Button
+          colorScheme="blackAlpha"
+          key={recipient}
+          onClick={() => {
+            setSelectedRecipient(recipient);
+            onSelectItem(recipient);
+          }}>
           {recipient}
         </Button>
       ))}
     </VStack>
   );
-};
+}
 
 export default CardRecipientList;
