@@ -31,7 +31,7 @@ function App() {
         <CardRecipientButtons
           cardRecipients={cardRecipients}
           colorScheme="blackAlpha"
-          onSelectItem={(recipient) => setSelectedRecipient(recipient)}
+          onSelectItem={(item) => setSelectedRecipient(item)}
         />
       </GridItem>
 

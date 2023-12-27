@@ -4,7 +4,7 @@ import { useState } from "react";
 interface Props {
   cardRecipients: string[];
   colorScheme: string;
-  onSelectItem: (recipient: string) => void;
+  onSelectItem: (index: string) => void;
 }
 
 const CardRecipientButtons = ({
@@ -12,23 +12,23 @@ const CardRecipientButtons = ({
   onSelectItem,
   colorScheme,
 }: Props) => {
-  const [activeButton, setActiveButton] = useState<String | null>(null);
+  const [activeButton, setActiveButton] = useState<Number | null>(null);
 
-  const handleButtonClick = (recipient: string) => {
-    setActiveButton(recipient);
+  const handleButtonClick = (index: number) => {
+    setActiveButton(index);
   };
 
   return (
     <VStack spacing="24px" paddingTop="10px">
-      {cardRecipients.map((recipient) => (
+      {cardRecipients.map((item, index) => (
         <Button
-          key={recipient}
+          key={index}
           onClick={() => {
-            onSelectItem(recipient);
-            handleButtonClick(recipient);
+            onSelectItem(item);
+            handleButtonClick(index);
           }}
-          colorScheme={activeButton === recipient ? "teal" : colorScheme}>
-          {recipient}
+          colorScheme={activeButton === index ? "teal" : colorScheme}>
+          {item}
         </Button>
       ))}
     </VStack>
