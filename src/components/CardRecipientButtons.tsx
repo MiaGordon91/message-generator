@@ -1,10 +1,10 @@
-import { Button, VStack } from "@chakra-ui/react";
+import { Button, Center, Flex, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 
 interface Props {
   cardRecipients: string[];
   colorScheme: string;
-  onSelectItem: (index: string) => void;
+  onSelectItem: (item: string) => void;
 }
 
 const CardRecipientButtons = ({
@@ -12,6 +12,7 @@ const CardRecipientButtons = ({
   onSelectItem,
   colorScheme,
 }: Props) => {
+  
   const [activeButton, setActiveButton] = useState<Number | null>(null);
 
   const handleButtonClick = (index: number) => {
@@ -19,19 +20,23 @@ const CardRecipientButtons = ({
   };
 
   return (
-    <VStack spacing="24px" paddingTop="10px">
-      {cardRecipients.map((item, index) => (
-        <Button
-          key={index}
-          onClick={() => {
-            onSelectItem(item);
-            handleButtonClick(index);
-          }}
-          colorScheme={activeButton === index ? "teal" : colorScheme}>
-          {item}
-        </Button>
-      ))}
-    </VStack>
+    <Center>
+      <HStack spacing="30px">
+        {cardRecipients.map((item, index) => (
+          <Button
+            key={index}
+            onClick={() => {
+              onSelectItem(item);
+              handleButtonClick(index);
+            }}
+            colorScheme={activeButton === index ? "teal" : colorScheme}
+            fontSize={{ base:"15px", md:"20px"}} 
+            >
+            {item}
+          </Button>
+        ))}
+      </HStack>
+    </Center>
   );
 };
 

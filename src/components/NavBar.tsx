@@ -1,13 +1,16 @@
-import { Center, Heading} from "@chakra-ui/react";
+import { Button, Heading, Stack} from "@chakra-ui/react";
 
 const NavBar = () => {
   return (
     <>
-      <Center>
-        <Heading style={{fontFamily: "Quicksand"}}>
-           Message Generator
+      <Stack direction={['row']} justifyContent="space-between">
+        <Heading size={{ sm:"m", md: "xl", lg: "2xl"}} style={{fontFamily: "Quicksand"}} p={4}>
+           from the heart
         </Heading>
-      </Center>
+        <Button m={5} size="md" variant="outline">
+            New chat
+        </Button>
+      </Stack >
     </>
   );
 };
