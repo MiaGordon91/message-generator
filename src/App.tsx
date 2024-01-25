@@ -1,55 +1,107 @@
-import { Grid, GridItem, Hide } from "@chakra-ui/react";
+import { Grid, GridItem, Hide, VStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardRecipientButtons from "./components/CardRecipientButtons";
-import MessageBox from "./components/MessageBox";
-import { useState } from "react";
+import MessageInput from "./components/MessageInput";
+import { SetStateAction, useEffect, useState } from "react";
+import ChatHistory from "./components/ChatHistory";
 
 function App() {
+  // define type definition of response object from the MessageInput component
+  interface ResponseData {
+    role: string;
+    content: string;
+  }
+
   const cardRecipients = ["Mum", "Dad", "Sister", "Brother"];
 
-  const [selectedRecipients, setSelectedRecipient] = useState("");
-  
+  const [selectedRecipient, setSelectedRecipient] = useState("");
+
+  const handleButtonClick = (item: SetStateAction<any>) => {
+    const messageStart = "Write me a birthday message for my";
+    const fullTextInput = messageStart.concat(" ", item);
+    setSelectedRecipient(fullTextInput);
+  };
+
+  // message response from API
+  const [messageResponse, setMessageResponse] = useState<ResponseData | null>(
+    null
+  );
+
+  // callback function that will receive data from the child component
+  const handleMessageFromAPI = (data: ResponseData) => {
+    setMessageResponse(data);
+  };
+
+  //handling data response from the external api to display as chat history
+  const [previousChats, setPreviousChats] = useState<ResponseData[]>([]);
+
+  // whenever the message changes it needs to run
+  useEffect(() => {
+    if (messageResponse) {
+      setPreviousChats((prevChats) => [
+        ...prevChats,
+        {
+          role: "assistant",
+          content: messageResponse.content,
+        },
+      ]);
+    }
+  }, [messageResponse]);
 
   return (
     <Grid
+      templateAreas={{
+        base: `"header" "main" "footer"`,
+        md: `"header header" "main" "footer"`,
+      }}
+
+      templateRows={{
+        base: "1fr",
+      }}
+
       templateColumns={{
         base: "1fr",
-        lg: "repeat(3, 1fr)",
+        lg: "250px 1fr",
       }}
-      bg="gray.50">
+      bg="#FFFFFF"
+      >
       <GridItem
-        as="header"
-        pl="2"
-        color="blackAlpha.900"
-        fontSize={{ lg: "28px" }}
-        colSpan={{ base: 1, lg: 3 }}
-        p="12px">
+        area={"header"}
+        bg="#285E61"
+        colSpan={{ md: 3 }}
+        p="12px"
+        >
         <NavBar />
       </GridItem>
 
-      <GridItem as="aside" p={{ lg: "12px", xl: "24px" }}>
-        <CardRecipientButtons
-          cardRecipients={cardRecipients}
-          colorScheme="blackAlpha"
-          onSelectItem={(item) => setSelectedRecipient(item)}
-        />
-      </GridItem>
-
       <GridItem
-        as="main"
-        bg="#E0E0E0"
-        colSpan={{ base: 1, lg: 2 }}
-        color="blackAlpha.900"
-        minHeight="100vh">
-        <MessageBox selectedCardRecipient={selectedRecipients} />
+        area={"main"}
+        colSpan={{ base: 3 }}
+        p={{ md: "10px", lg: "18px", xl: "24px" }}
+        w='100%'
+        >
+        <VStack>
+          <CardRecipientButtons
+            cardRecipients={cardRecipients}
+            colorScheme="blackAlpha"
+            onSelectItem={handleButtonClick}
+          />
+          <MessageInput
+            textInput={selectedRecipient}
+            onTextChange={setSelectedRecipient}
+            onDataReceived={handleMessageFromAPI}
+          />
+          <ChatHistory updatedChats={previousChats}/>
+        </VStack>
       </GridItem>
 
-      <Hide below="sm">
+      <Hide below="md">
         <GridItem
-          bg="#000000"
           as="footer"
-          colSpan={{ md: 3 }}
-          color="blackAlpha.900">
+          bg="#757575"
+          colSpan={{ base: 3 }}
+          p={5}
+          >
           Footer
         </GridItem>
       </Hide>
