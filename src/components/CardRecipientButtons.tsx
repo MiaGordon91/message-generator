@@ -3,14 +3,12 @@ import { useState } from "react";
 
 interface Props {
   cardRecipients: string[];
-  colorScheme: string;
   onSelectItem: (item: string) => void;
 }
 
 const CardRecipientButtons = ({
   cardRecipients,
   onSelectItem,
-  colorScheme,
 }: Props) => {
   
   const [activeButton, setActiveButton] = useState<Number | null>(null);
@@ -21,16 +19,16 @@ const CardRecipientButtons = ({
 
   return (
     <Center>
-      <HStack spacing="30px">
+      <HStack spacing={{ base:"10px", md:"30px"}}>
         {cardRecipients.map((item, index) => (
           <Button
-            key={index}
+            key={item}
             onClick={() => {
               onSelectItem(item);
               handleButtonClick(index);
             }}
-            colorScheme={activeButton === index ? "teal" : colorScheme}
-            fontSize={{ base:"15px", md:"20px"}} 
+            colorScheme="blackAlpha"
+            fontSize={{ base:"10px", md:"20px"}} 
             >
             {item}
           </Button>

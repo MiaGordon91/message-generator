@@ -2,12 +2,10 @@ import {
   Box,
   Card,
   CardBody,
-  Center,
-  Container,
-  Hide,
-  SimpleGrid,
-  Stack,
+  CardHeader,
+  Divider,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -16,36 +14,27 @@ interface Props {
 
 const ChatHistory = ({ updatedChats }: Props) => {
   return (
-    <>
-      <Center>
-        <SimpleGrid columns={{ sm: 1, md: 2 }} minHeight="100vh" mt={4} w='100vh'>
-
-        <Hide below='md'>
-          <Container bg="#285E61" borderRadius={4}>
-            Display user messages to OpenAI
-          </Container>
-        </Hide>
-  
-          <Container bg="#E0E0E0" borderRadius={4} color="black">
-              Display response from OpenAI
-              <Box display="flex" alignItems="center" p={9}>
-                <Stack spacing="4">
-                  {updatedChats?.map((updatedChat, index) => (
-                    <Card display="flex" direction="row" bg="#424242">
-                      <CardBody>
-                        <Text key={index} fontSize={{ base: "15px", md: "20px" }}>
-                          {updatedChat.content}
-                        </Text>
-                      </CardBody>
-                    </Card>
-                  ))}
-                  ;
-                </Stack>
-            </Box>
-          </Container>
-        </SimpleGrid>
-      </Center>
-    </>
+  <>
+  <Box p={9} h="100vh" w={[400, 500, 600, 1200]} bg="#E0E0E0">
+      {updatedChats?.map((updatedChat, index) => (
+        <VStack spacing="3" display="flex" justifyContent="center">
+          <Box>
+            <Card display="flex" key={index} bg="#757575" m={2}>
+              <CardHeader fontWeight="bold" fontSize={{ base: "12px", md: "20px" }}>
+                  {updatedChat.title}
+              </CardHeader>
+              <Divider />
+              <CardBody>
+                <Text fontSize={{ base: "12px", md: "20px" }}>
+                  {updatedChat.content}
+                </Text>
+              </CardBody>    
+            </Card>
+          </Box>
+        </VStack>  
+        ))};
+  </Box>
+  </>
   );
 };
 

@@ -5,11 +5,11 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 interface Props {
   textInput: string;
-  onTextChange: (value: string) => void;
+  userRequestSent: (value: string) => void;
   onDataReceived: (data: {role: string, content: string}) => void;
 }
 
-const MessageInput = ({ textInput, onTextChange, onDataReceived}: Props) => {
+const MessageInput = ({ textInput, userRequestSent, onDataReceived}: Props) => {
 
   const [input, setInput] = useState<string>(textInput);
 
@@ -19,12 +19,12 @@ const MessageInput = ({ textInput, onTextChange, onDataReceived}: Props) => {
   }, [textInput,]);
   
   
-   // function that handles updating the local state and calling 
-    // the onTextChange prop that can be passed to Open API 
+   // function that handles updating the local state to set the input on the message property
+   // in the fetch call to Open API and set the input on the onTextChange to pass to parent component
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       setInput(newValue);
-      onTextChange(newValue);      
+      userRequestSent(newValue);      
     };
 
     const getMessage = async () => {
@@ -45,18 +45,17 @@ const MessageInput = ({ textInput, onTextChange, onDataReceived}: Props) => {
         );
         const data = await response.json();
         onDataReceived(data.choices[0].message);
+        setInput("");
       } catch (error) {
         console.error(error);
       }
     };
 
-  // console.log(message);
-
   return (
     <>
     <Center>
-     <Flex p={4} mt={4} bg="#757575" borderRadius={15}>
-        <Box p={4} >
+     <Flex p={2} mt={4} bg="#757575" borderRadius={15}>
+        <Box p={2} >
           <InputGroup display="flex" position="relative">
             <InputRightElement p={25}>
               <IconButton

@@ -14,13 +14,14 @@ function App() {
 
   const cardRecipients = ["Mum", "Dad", "Sister", "Brother"];
 
-  const [selectedRecipient, setSelectedRecipient] = useState("");
+  const [userRequestMessage, setuserRequestMessage] = useState("");
 
   const handleButtonClick = (item: SetStateAction<any>) => {
     const messageStart = "Write me a birthday message for my";
     const fullTextInput = messageStart.concat(" ", item);
-    setSelectedRecipient(fullTextInput);
+    setuserRequestMessage(fullTextInput);
   };
+
 
   // message response from API
   const [messageResponse, setMessageResponse] = useState<ResponseData | null>(
@@ -37,16 +38,17 @@ function App() {
 
   // whenever the message changes it needs to run
   useEffect(() => {
-    if (messageResponse) {
+    if (userRequestMessage && messageResponse) {
       setPreviousChats((prevChats) => [
         ...prevChats,
         {
+          title: userRequestMessage,
           role: "assistant",
           content: messageResponse.content,
         },
       ]);
     }
-  }, [messageResponse]);
+  }, [userRequestMessage,messageResponse]);
 
   return (
     <Grid
@@ -61,13 +63,13 @@ function App() {
 
       templateColumns={{
         base: "1fr",
-        lg: "250px 1fr",
+        // lg: "250px 1fr",
       }}
       bg="#FFFFFF"
       >
       <GridItem
         area={"header"}
-        bg="#285E61"
+        bg="#F6AD55"
         colSpan={{ md: 3 }}
         p="12px"
         >
@@ -76,19 +78,16 @@ function App() {
 
       <GridItem
         area={"main"}
-        colSpan={{ base: 3 }}
         p={{ md: "10px", lg: "18px", xl: "24px" }}
-        w='100%'
         >
         <VStack>
           <CardRecipientButtons
             cardRecipients={cardRecipients}
-            colorScheme="blackAlpha"
             onSelectItem={handleButtonClick}
           />
           <MessageInput
-            textInput={selectedRecipient}
-            onTextChange={setSelectedRecipient}
+            textInput={userRequestMessage}
+            userRequestSent={setuserRequestMessage}
             onDataReceived={handleMessageFromAPI}
           />
           <ChatHistory updatedChats={previousChats}/>
