@@ -43,12 +43,12 @@ function App() {
         ...prevChats,
         {
           title: userRequestMessage,
-          role: "assistant",
+          role: messageResponse.role,
           content: messageResponse.content,
         },
       ]);
     }
-  }, [userRequestMessage,messageResponse]);
+  }, [messageResponse]);
 
   return (
     <Grid

@@ -13,26 +13,28 @@ interface Props {
 }
 
 const ChatHistory = ({ updatedChats }: Props) => {
+
+
   return (
   <>
-  <Box p={9} h="100vh" w={[400, 500, 600, 1200]} bg="#E0E0E0">
-      {updatedChats?.map((updatedChat, index) => (
+  <Box p={9} h="100vh" w={[400, 500, 600, 1200]} bg="#E0E0E0" overflow='scroll'>
+      {[...updatedChats].reverse().map((message, index) => (
         <VStack spacing="3" display="flex" justifyContent="center">
           <Box>
             <Card display="flex" key={index} bg="#757575" m={2}>
               <CardHeader fontWeight="bold" fontSize={{ base: "12px", md: "20px" }}>
-                  {updatedChat.title}
+                  {message.title}
               </CardHeader>
               <Divider />
               <CardBody>
                 <Text fontSize={{ base: "12px", md: "20px" }}>
-                  {updatedChat.content}
+                  {message.content}
                 </Text>
               </CardBody>    
             </Card>
           </Box>
         </VStack>  
-        ))};
+        ))}; 
   </Box>
   </>
   );
