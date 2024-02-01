@@ -1,10 +1,13 @@
-import { Button, Heading, Stack } from "@chakra-ui/react";
+import { Button, Heading, Stack, useToast } from "@chakra-ui/react";
 
 interface Props {
   onSelect: (action: boolean) => void ;
 }
 
 const NavBar = ({ onSelect }: Props) => {
+
+  const toast = useToast()
+
   return (
     <>
       <Stack p={6} direction={["row"]} justifyContent="space-between" borderRadius={10}>
@@ -24,6 +27,13 @@ const NavBar = ({ onSelect }: Props) => {
           variant="outline"
           onClick={() => {
             onSelect(true);
+            toast({
+              title: 'Messages deleted',
+              description: 'All messages have been removed',
+              status: 'success',
+              duration: 9000,
+              isClosable: true,
+            })
           }}>
           Clear all messages
         </Button>

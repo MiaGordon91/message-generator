@@ -1,4 +1,4 @@
-import { Button, Center, Flex, HStack } from "@chakra-ui/react";
+import { Button, ButtonGroup, Center } from "@chakra-ui/react";
 import { useState } from "react";
 
 interface Props {
@@ -19,7 +19,7 @@ const CardRecipientButtons = ({
 
   return (
     <Center>
-      <HStack spacing={{ base:"10px", md:"30px"}}>
+      <ButtonGroup spacing={{ base:"10px", md:"30px"}}>
         {cardRecipients.map((item, index) => (
           <Button
             key={item}
@@ -27,13 +27,17 @@ const CardRecipientButtons = ({
               onSelectItem(item);
               handleButtonClick(index);
             }}
-            colorScheme="blackAlpha"
+            bg='#f6bb55'
+            fontWeight="bold"
             fontSize={{ base:"10px", md:"20px"}} 
+            _hover={{
+              background: "#d776f5",
+            }}
             >
             {item}
           </Button>
         ))}
-      </HStack>
+      </ButtonGroup>
     </Center>
   );
 };

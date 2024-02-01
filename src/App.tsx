@@ -4,6 +4,7 @@ import CardRecipientButtons from "./components/CardRecipientButtons";
 import MessageInput from "./components/MessageInput";
 import { SetStateAction, useEffect, useState } from "react";
 import ChatHistory from "./components/ChatHistory";
+import ButtonSelectorPrompt from "./components/ButtonSelectorPrompt";
 
 function App() {
   // define type definition of response object from the MessageInput component
@@ -87,6 +88,7 @@ function App() {
         p={{ md: "10px", lg: "18px", xl: "24px" }}
         >
         <VStack>
+          <ButtonSelectorPrompt/>
           <CardRecipientButtons
             cardRecipients={cardRecipients}
             onSelectItem={handleButtonClick}
@@ -102,12 +104,11 @@ function App() {
 
       <Hide below="md">
         <GridItem
-          as="footer"
+          area={"footer"}
           className='gradient_background'
           colSpan={{ base: 3 }}
-          p={5}
+          p={6}
           >
-          Footer
         </GridItem>
       </Hide>
     </Grid>

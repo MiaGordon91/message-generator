@@ -4,3 +4,9 @@
     font-family: "Quicksand";
     color: "blackAlpha.900";
 }
+
+.gradient_background {
+    background: linear-gradient(0deg, #F6AD55, #da61ff);
+  }
+
+ 
