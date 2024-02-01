@@ -28,10 +28,12 @@ const MessageInput = ({ textInput, userRequestSent, onDataReceived}: Props) => {
     };
 
     const getMessage = async () => {
+
+      const messageResponseCountLimit = '.Please cap message to 80 words max'
       const options = {
         method: "POST",
         body: JSON.stringify({
-          message: input,
+          message: input. concat(messageResponseCountLimit)
         }),
         headers: {
           "Content-Type": "application/json",
@@ -54,14 +56,14 @@ const MessageInput = ({ textInput, userRequestSent, onDataReceived}: Props) => {
   return (
     <>
     <Center>
-     <Flex p={2} mt={4} bg="#757575" borderRadius={15}>
-        <Box p={2} >
+     <Flex p={4} mt={4} borderRadius={15} bg='#757575'>
+        <Box p={2}>
           <InputGroup display="flex" position="relative">
             <InputRightElement p={25}>
               <IconButton
                 icon={<ArrowDownIcon />}
                 size="sm"
-                colorScheme="teal"
+                colorScheme="#757575"
                 variant="outline"
                 aria-label={"Submit message"}
                 onClick={getMessage}>
@@ -76,7 +78,7 @@ const MessageInput = ({ textInput, userRequestSent, onDataReceived}: Props) => {
             />   
           </InputGroup>
         </Box>           
-    </Flex>
+      </Flex>
     </Center>
     </>
   );

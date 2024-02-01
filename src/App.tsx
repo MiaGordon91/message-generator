@@ -12,7 +12,7 @@ function App() {
     content: string;
   }
 
-  const cardRecipients = ["Mum", "Dad", "Sister", "Brother"];
+  const cardRecipients = ["Mum", "Dad", "Sister", "Brother", "Grandma", "Grandad", "Uncle", "Aunt", "Cousin", "Friend"];
 
   const [userRequestMessage, setuserRequestMessage] = useState("");
 
@@ -50,6 +50,12 @@ function App() {
     }
   }, [messageResponse]);
 
+  const handleClearPreviousChats = (action: boolean) => {
+    if( action === true){
+      setPreviousChats([]);
+    }
+  }
+
   return (
     <Grid
       templateAreas={{
@@ -65,15 +71,15 @@ function App() {
         base: "1fr",
         // lg: "250px 1fr",
       }}
-      bg="#FFFFFF"
+      bg='#f0f3f5'
       >
       <GridItem
         area={"header"}
-        bg="#F6AD55"
+        className='gradient_background'
         colSpan={{ md: 3 }}
         p="12px"
         >
-        <NavBar />
+        <NavBar onSelect={handleClearPreviousChats}/>
       </GridItem>
 
       <GridItem
@@ -97,7 +103,7 @@ function App() {
       <Hide below="md">
         <GridItem
           as="footer"
-          bg="#757575"
+          className='gradient_background'
           colSpan={{ base: 3 }}
           p={5}
           >
