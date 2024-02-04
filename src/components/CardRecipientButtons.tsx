@@ -1,5 +1,4 @@
-import { Button, ButtonGroup, Center } from "@chakra-ui/react";
-import { useState } from "react";
+import { Button, Wrap, WrapItem } from "@chakra-ui/react";
 
 interface Props {
   cardRecipients: string[];
@@ -10,35 +9,30 @@ const CardRecipientButtons = ({
   cardRecipients,
   onSelectItem,
 }: Props) => {
-  
-  const [activeButton, setActiveButton] = useState<Number | null>(null);
 
-  const handleButtonClick = (index: number) => {
-    setActiveButton(index);
-  };
 
   return (
-    <Center>
-      <ButtonGroup spacing={{ base:"10px", md:"30px"}}>
+    <Wrap justify='center'>
         {cardRecipients.map((item, index) => (
-          <Button
-            key={item}
-            onClick={() => {
-              onSelectItem(item);
-              handleButtonClick(index);
-            }}
-            bg='#f6bb55'
-            fontWeight="bold"
-            fontSize={{ base:"10px", md:"20px"}} 
-            _hover={{
-              background: "#d776f5",
-            }}
-            >
-            {item}
-          </Button>
+          <WrapItem>
+            <Button
+              key={item}
+              onClick={() => {
+                onSelectItem(item);
+              }}
+              bg='#f6bb55'
+              fontWeight="bold"
+              fontSize={{ base:"10px", md:"12px", lg: "16px"}} 
+              p={{ base:"3px", md:"8px" }}
+              _hover={{
+                background: "#d776f5",
+              }}
+              >
+              {item}
+            </Button>
+          </WrapItem>
         ))}
-      </ButtonGroup>
-    </Center>
+      </Wrap>
   );
 };
 

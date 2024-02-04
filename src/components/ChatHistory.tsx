@@ -19,26 +19,18 @@ const ChatHistory = ({ updatedChats }: Props) => {
       <Box
         h="100vh"
         borderRadius={10}
-        p={5}
-        w={[400, 500, 600, 1200]}
+        p={2}
+        w={[300, 500, 600, 1000]}
         mt={5}
         overflow="auto"
-        boxShadow='2xl'
-        >
-        
-        <Card
-          bg="#ce8ae3"
-          color="#000000"
-          mb={2}
-          align="center">
-          <CardBody
-            fontWeight="bold"
-            fontSize={{ base: "16px", md: "25px" }}
-            >
-              View all messages here 
+        boxShadow="2xl">
+        <Card bg="#ce8ae3" color="#000000" mb={2} align="center">
+          <CardBody>
+            <Text fontSize={{ base: "12px", md: "16px", lg: "20px" }} fontWeight="bold">
+              View all messages here
               <ArrowDownIcon ml={2} />
+            </Text>
           </CardBody>
-          
         </Card>
 
         {[...updatedChats].reverse().map((message, index) => (
@@ -53,6 +45,7 @@ const ChatHistory = ({ updatedChats }: Props) => {
                 align="center">
                 <CardHeader
                   fontWeight="bold"
+                  textAlign="center"
                   fontSize={{ base: "12px", md: "20px" }}>
                   {message.title}
                 </CardHeader>

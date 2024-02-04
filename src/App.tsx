@@ -1,4 +1,4 @@
-import { Grid, GridItem, Hide, VStack } from "@chakra-ui/react";
+import { Grid, GridItem, VStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardRecipientButtons from "./components/CardRecipientButtons";
 import MessageInput from "./components/MessageInput";
@@ -52,7 +52,7 @@ function App() {
   }, [messageResponse]);
 
   const handleClearPreviousChats = (action: boolean) => {
-    if( action === true){
+    if(action === true){
       setPreviousChats([]);
     }
   }
@@ -61,31 +61,24 @@ function App() {
     <Grid
       templateAreas={{
         base: `"header" "main" "footer"`,
-        md: `"header header" "main" "footer"`,
+        lg: `"header header" "main" "footer"`,
       }}
 
-      templateRows={{
-        base: "1fr",
-      }}
-
-      templateColumns={{
-        base: "1fr",
-        // lg: "250px 1fr",
-      }}
+      templateRows="repeat(12, 1fr)"
+      templateColumns= "1fr"
       bg='#f0f3f5'
       >
       <GridItem
-        area={"header"}
+        as="header"
         className='gradient_background'
-        colSpan={{ md: 3 }}
-        p="12px"
+        rowSpan={1}
         >
         <NavBar onSelect={handleClearPreviousChats}/>
       </GridItem>
 
       <GridItem
-        area={"main"}
-        p={{ md: "10px", lg: "18px", xl: "24px" }}
+        as="main"
+        rowSpan={10}
         >
         <VStack>
           <ButtonSelectorPrompt/>
@@ -102,15 +95,13 @@ function App() {
         </VStack>
       </GridItem>
 
-      <Hide below="md">
-        <GridItem
-          area={"footer"}
-          className='gradient_background'
-          colSpan={{ base: 3 }}
-          p={6}
-          >
-        </GridItem>
-      </Hide>
+      <GridItem
+        as="footer"
+        rowSpan={1}
+        className='gradient_background'
+        mt={3}
+        >
+      </GridItem>
     </Grid>
   );
 }

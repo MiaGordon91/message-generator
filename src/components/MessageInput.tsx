@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
+import { Box, Flex, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/react";
 import { ArrowDownIcon } from "@chakra-ui/icons";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -55,14 +55,13 @@ const MessageInput = ({ textInput, userRequestSent, onDataReceived}: Props) => {
 
   return (
     <>
-    <Center>
-     <Flex p={4} mt={4} borderRadius={15} bg='#757575'>
-        <Box p={2}>
-          <InputGroup display="flex" position="relative">
-            <InputRightElement p={25}>
+     <Flex p={3} mt={4} borderRadius={15} bg='#757575'>
+        <Box p={[0.5, 2]} w={[250, 400, 600, 800, 1000]}>
+          <InputGroup>
+            <InputRightElement p={25} pt={{base:"16px" , md:"22px"}} pr={{base:"16px", md:"24px"}}>
               <IconButton
                 icon={<ArrowDownIcon />}
-                size="sm"
+                size={["xs", "sm"]}
                 colorScheme="#757575"
                 variant="outline"
                 aria-label={"Submit message"}
@@ -72,14 +71,13 @@ const MessageInput = ({ textInput, userRequestSent, onDataReceived}: Props) => {
             <Input
               value={input}
               onChange={handleChange}
-              placeholder="Write me a birthday message for my"
-              size="lg"
-              w="100vh"
+              placeholder="Write me a birthday message for my..."
+              size={["sm", "lg"]}
+              textOverflow="wrap"
             />   
           </InputGroup>
         </Box>           
       </Flex>
-    </Center>
     </>
   );
 };

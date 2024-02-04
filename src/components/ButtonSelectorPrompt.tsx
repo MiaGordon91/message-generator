@@ -4,7 +4,7 @@ export const ButtonSelectorPrompt = () => {
   return (
     <>
     <Heading
-        size={{ sm: "m", md: "l", lg: "xl" }}
+        size={["xs", "md", "lg"]}
         style={{ fontFamily: "Quicksand" }}
         pt={4}
         color='#000000'
@@ -12,10 +12,11 @@ export const ButtonSelectorPrompt = () => {
         In need of a birthday message? 
     </Heading>
      <Text
-     fontSize={{ sm: "l", md: "xl", lg: "2xl"}}
-     style={{ fontFamily: "Quicksand" }}
-     color='#000000'
-     pb={5}
+      fontSize={[ "xs", "md", "l", "2xl"]}
+      style={{ fontFamily: "Quicksand" }}
+      color='#000000'
+      pb={3}
+      textAlign="center"
      >
      Select your recipient below and let us do the work...
    </Text>
