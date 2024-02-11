@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "start:server": "nodemon --exec ts-node --project tsconfig.json server.tsx",
+    "start:server": "nodemon --exec ts-node --project tsconfig.json server/server.tsx",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
