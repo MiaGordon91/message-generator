@@ -6,7 +6,7 @@ import "./index.css";
 
 var password = "iAmHuman";
 
-// if(prompt("To protect against bots, please enter password to access app:", "") === password)
+if(prompt("To protect against bots, please enter password to access app:", "") === password)
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider>
@@ -14,6 +14,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </ChakraProvider>
   </React.StrictMode>
 );
-// else{
-//   alert('Sorry, wrong password!');
-// }
+else{
+  alert('Sorry, wrong password!');
+}

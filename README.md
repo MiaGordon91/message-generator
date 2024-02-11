@@ -1,6 +1,6 @@
 ** Birthday Message Generator **
 
-This is a side project to learn more about React and Typescript.
+This is a side project to learn more about React and Typescript and is a React app with an Express backend.
 
 - How the app works
   A user can select from a number of of predefined recipient buttons - which represent family members and friend.
@@ -15,4 +15,5 @@ This is a side project to learn more about React and Typescript.
     Cors
     Nodemon
 
-The deployed app can be viewed here
+The deployed app can be viewed here on Vercel: https://message-generator-pied.vercel.app/
+To protect the app against bots, please enter the following password: iAmHuman
