@@ -52,9 +52,11 @@ const MessageInput = ({
       },
     };
 
+    const { VITE_SERVER_URL } = import.meta.env;
+
     try {
       const response = await fetch(
-        "http://localhost:8000/completions",
+        `${VITE_SERVER_URL}`,
         options
       );
       const data = await response.json();
@@ -87,6 +89,7 @@ const MessageInput = ({
               placeholder="Write me a birthday message for my..."
               size={["sm", "lg"]}
               textOverflow="wrap"
+              color="#FFFFFF"
             />
           </InputGroup>
         </Box>

@@ -19,6 +19,7 @@ const NavBar = ({onSelect}: Props) => {
           size={["md", "xl", "2xl"]}
           style={{ fontFamily: "Quicksand" }}
           p={[3, 5]}
+          color="#FFFFFF"
           >
           from the heart...
         </Heading>

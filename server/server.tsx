@@ -1,10 +1,16 @@
 export {};
-require('dotenv').config()
+import path from 'path';
+import dotenv from 'dotenv';
+
+//points file to access .env in root directory
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const pathToEnv = path.resolve(__dirname, '../.env');
+dotenv.config({path: pathToEnv});
+
+import express from 'express';
+import cors from 'cors';
 
 const PORT = 8000;
-const express = require("express");
-const cors = require("cors");
-
 const app = express();
 
 // this allows us to work with json when sending
@@ -13,18 +19,19 @@ app.use(express.json());
 
 app.use(cors());
 
-const API_KEY = process.env.OPEN_API_KEY;
+const VITE_API_KEY = process.env.OPEN_API_KEY;
+const EXPRESS_ROUTE = process.env.EXPRESS_ROUTE;
 
-//define the route
-// with asyn function with await keyword
-app.post('/completions', async(req: any, res: { send: (arg0: any) => void; }) => {
+//define the express route
+// with asyn function with await keyword that gets the response
+app.post(`${EXPRESS_ROUTE}`, async(req: any, res: { send: (arg0: any) => void; }) => {
 
     // options defines what kind of request this is going to be
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`,
+            "Authorization": `Bearer ${VITE_API_KEY}`,
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
@@ -40,7 +47,7 @@ app.post('/completions', async(req: any, res: { send: (arg0: any) => void; }) =>
 
 
     try{
-      // post request to this URL
+      // post request to this URL and wait for a response to come back
       const response = await fetch('https://api.openai.com/v1/chat/completions', options)  
       const data = await response.json()
     
