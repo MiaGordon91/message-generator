@@ -21,14 +21,14 @@ const REACT_APP_ROUTE = process.env.REACT_APP_ROUTE;
 app.use(express.json());
 
 //allow requests from react frontend to avoid CORS policy restriction
-// app.use(
-//   cors({
-//     origin: `${REACT_APP_ROUTE}`,
-//   })
-// );
-
-app.use(cors());
-app.options(`${REACT_APP_ROUTE}`, cors());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", `${REACT_APP_ROUTE}`);
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
 
 //define the express route
 // with asyn function with await keyword that gets the response
