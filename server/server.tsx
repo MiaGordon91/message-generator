@@ -21,11 +21,14 @@ const REACT_APP_ROUTE = process.env.REACT_APP_ROUTE;
 app.use(express.json());
 
 //allow requests from react frontend to avoid CORS policy restriction
-app.use(
-  cors({
-    origin: `${REACT_APP_ROUTE}`,
-  })
-);
+// app.use(
+//   cors({
+//     origin: `${REACT_APP_ROUTE}`,
+//   })
+// );
+
+app.use(cors());
+app.options(`${REACT_APP_ROUTE}`, cors());
 
 //define the express route
 // with asyn function with await keyword that gets the response
@@ -35,7 +38,6 @@ app.post(
     // options defines what kind of request this is going to be
     const options = {
       method: "POST",
-      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${OPEN_API_KEY}`,
@@ -56,7 +58,7 @@ app.post(
       // post request to this URL and wait for a response to come back
       const response = await fetch(
         "https://api.openai.com/v1/chat/completions",
-        options
+        options,
       );
       const data = await response.json();
 
