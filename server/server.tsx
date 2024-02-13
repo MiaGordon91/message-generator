@@ -35,6 +35,7 @@ app.post(
     // options defines what kind of request this is going to be
     const options = {
       method: "POST",
+      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${OPEN_API_KEY}`,
