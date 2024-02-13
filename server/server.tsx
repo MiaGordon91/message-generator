@@ -1,38 +1,31 @@
 export {};
 import path from "path";
 import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
 
 //points file to access .env in root directory
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const pathToEnv = path.resolve(__dirname, "../.env");
 dotenv.config({ path: pathToEnv });
 
-import express from "express";
-import cors from "cors";
-
 const PORT = 8000;
 const app = express();
-
-// this allows us to work with json when sending
-// from the front end to the back end through POST requests
-app.use(express.json());
-
-app.use(cors());
 
 const OPEN_API_KEY = process.env.OPEN_API_KEY;
 const EXPRESS_ROUTE = process.env.EXPRESS_ROUTE;
 const REACT_APP_ROUTE = process.env.REACT_APP_ROUTE;
 
-//update header to fetch data and avoid “No Access-Control-Allow-Origin header”
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", `${REACT_APP_ROUTE}`);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// this allows us to work with json when sending
+// from the front end to the back end through POST requests
+app.use(express.json());
 
+//allow requests from react frontend to avoid CORS policy restriction
+app.use(
+  cors({
+    origin: `${REACT_APP_ROUTE}`,
+  })
+);
 
 //define the express route
 // with asyn function with await keyword that gets the response
