@@ -20,20 +20,17 @@ const REACT_APP_ROUTE = process.env.REACT_APP_ROUTE;
 // from the front end to the back end through POST requests
 app.use(express.json());
 
-const corsOptions = {
-    origin: `${REACT_APP_ROUTE}`,
-}
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 //allow requests from react frontend to avoid CORS policy restriction
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin","*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+  res.setHeader('Access-Control-Allow-Credentials', 'true'),
+  res.setHeader('Access-Control-Allow-Origin','*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
-  res.header(
+  res.setHeader(
     "Access-Control-Allow-Methods","PUT, GET, POST, DELETE, OPTONS"
   );
   next();

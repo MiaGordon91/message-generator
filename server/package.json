@@ -5,7 +5,7 @@
   "main": "server.tsx",
   "type": "module",
   "scripts": {
-    "start:server": "nodemon --exec ts-node --project ../tsconfig.json server.tsx"
+    "start:server": "nodemon --exec ts-node --project ../tsconfig.json index.tsx"
   },
   "author": "",
   "license": "ISC",
