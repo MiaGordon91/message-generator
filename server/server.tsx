@@ -24,7 +24,7 @@ app.use(cors());
 
 //allow requests from react frontend to avoid CORS policy restriction
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", `${REACT_APP_ROUTE}`);
+  res.header("Access-Control-Allow-Origin",`'*'`);
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
