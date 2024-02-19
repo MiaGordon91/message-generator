@@ -12,4 +12,5 @@ React, Node, Vite, Chakra UI, ExpressJS, Cors, Nodemon
 ### The deployed app can be viewed here on Vercel: 
 https://message-generator-pied.vercel.app/
 
-To protect the app against bots, please enter the following password: **iAmHuman**
+You will be prompted to enter the password below to access the app - this has been added to protect the app against bots. 
+Please enter password: **iAmHuman**
