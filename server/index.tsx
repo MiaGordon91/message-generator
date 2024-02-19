@@ -77,3 +77,5 @@ app.post(
 );
 
 app.listen(PORT, () => console.log("Your server is running on PORT " + PORT));
+
+module.exports = app;

@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.tsx",
+  "main": "index.tsx",
   "type": "module",
   "scripts": {
     "start:server": "nodemon --exec ts-node --project ../tsconfig.json index.tsx"
