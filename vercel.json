@@ -12,5 +12,5 @@
         "dest": "index.tsx"
       }
     ],
-      "rewrites": [{ "source": "/server/(.*)", "destination": "/server" }]
+    "rewrites": [{ "source": "/server/(.*)", "destination": "/server" }]
   }
