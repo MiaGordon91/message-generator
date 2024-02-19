@@ -2,15 +2,15 @@
     "version": 2,
     "builds": [
       {
-        "src": "index.tsx",
+        "src": "./server/index.tsx",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "index.tsx"
+        "dest": "./server/index.tsx"
       }
     ],
-    "rewrites": [{ "source": "/server/(.*)", "destination": "/server" }]
+    "rewrites": [{ "source": "./server/(.*)", "destination": "./server" }]
   }
