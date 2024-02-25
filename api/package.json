@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "start:server": "nodemon --exec ts-node --project ../tsconfig.json index.tsx",
-    "build": "webpack"
+    "start": " node dist/index.js",
+    "deploy": "vercel --prod"
   },
   "engines": {
     "node": "18.x"
