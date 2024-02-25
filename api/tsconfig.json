@@ -1,7 +1,13 @@
 {
     "compilerOptions": {
-      "allowSyntheticDefaultImports": true,
+      "target": "ESNext",
       "module": "es2020",
+      "outDir": "./dist",
+      "strict": true,
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "allowSyntheticDefaultImports": true,
       "moduleResolution": "Node",
     }
   }
