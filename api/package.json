@@ -8,6 +8,9 @@
     "start:server": "nodemon --exec ts-node --project ../tsconfig.json index.tsx",
     "build": "ts-node --project ../tsconfig.json index.tsx"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
