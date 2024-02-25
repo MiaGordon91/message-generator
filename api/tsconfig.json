@@ -9,5 +9,11 @@
       "skipLibCheck": true,
       "allowSyntheticDefaultImports": true,
       "moduleResolution": "Node",
-    }
+    },
+    "include": [
+      "*.tsx"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
   }
