@@ -22,6 +22,9 @@ app.use(express.json());
 
 app.use(cors());
 
+// Handle preflight OPTIONS requests
+app.options('*', cors());
+
 //allow requests from react frontend to avoid CORS policy restriction
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', 'true'),
