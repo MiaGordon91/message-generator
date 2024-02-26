@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start:server": "nodemon --exec ts-node --project ../tsconfig.json index.tsx",
-    "build": " node dist/index.js",
+    "build": "node dist/index.js",
     "deploy": "vercel --prod"
   },
   "engines": {

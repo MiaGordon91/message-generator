@@ -2,7 +2,7 @@
     "compilerOptions": {
       "target": "ESNext",
       "module": "es2020",
-      "outDir": "./dist",
+      "outDir": "dist",
       "strict": true,
       "esModuleInterop": true,
       "resolveJsonModule": true,
@@ -11,7 +11,7 @@
       "moduleResolution": "Node",
     },
     "include": [
-      "*.tsx"
+      "*"
     ],
     "exclude": [
       "node_modules"
