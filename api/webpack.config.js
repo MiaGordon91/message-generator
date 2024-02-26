@@ -20,10 +20,11 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react']
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: ['babel-plugin-transform-import-meta']
             }
           },
-          'ts-loader'
+           'ts-loader'
         ],
         exclude: /node_modules/
       }
