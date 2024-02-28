@@ -8,20 +8,19 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
     library: {
-        type: 'module'
+        type: 'commonjs'
     },
-    chunkFormat: 'module'
+    chunkFormat: 'commonjs',
   },
   module: {
     rules: [
       {
-        test: /\.(tsx|ts)$/,
+        test: /\.(tsx|ts|js)$/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: ['babel-plugin-transform-import-meta']
+              presets: ['@babel/preset-env','@babel/preset-typescript'],
             }
           },
            'ts-loader'
@@ -36,5 +35,6 @@ module.exports = {
     externals: [nodeExternals()],
     experiments: {
         outputModule: true
-    }    
+    },
+    cache: false
 };

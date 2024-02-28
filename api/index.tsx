@@ -5,7 +5,6 @@ import express from "express";
 import cors from "cors";
 
 //points file to access .env in root directory
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const pathToEnv = path.resolve(__dirname, "../.env");
 dotenv.config({ path: pathToEnv });
 
