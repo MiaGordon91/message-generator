@@ -13,7 +13,6 @@ const app = express();
 
 const OPEN_API_KEY = process.env.OPEN_API_KEY;
 const EXPRESS_ROUTE = process.env.EXPRESS_ROUTE;
-const REACT_APP_ROUTE = process.env.REACT_APP_ROUTE;
 
 // this allows us to work with json when sending
 // from the front end to the back end through POST requests
