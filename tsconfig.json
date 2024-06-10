@@ -23,7 +23,8 @@
     "src",
     "src/**/*.tsx",
     "src/**/*.ts",
-
-  ],
+    "api",
+    "__mocks__"
+, "setupTests.ts"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
