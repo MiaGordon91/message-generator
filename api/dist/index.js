@@ -8,13 +8,12 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 //points file to access .env in root directory
-const pathToEnv = path_1.default.resolve(__dirname, "../.env");
+const pathToEnv = path_1.default.resolve(__dirname, "../../.env");
 dotenv_1.default.config({ path: pathToEnv });
 const PORT = process.env.PORT || 8000;
 const app = (0, express_1.default)();
 const OPEN_API_KEY = process.env.OPEN_API_KEY;
 const EXPRESS_ROUTE = process.env.EXPRESS_ROUTE;
-const REACT_APP_ROUTE = process.env.REACT_APP_ROUTE;
 // this allows us to work with json when sending
 // from the front end to the back end through POST requests
 app.use(express_1.default.json());
@@ -24,7 +23,7 @@ app.options('*', (0, cors_1.default)());
 //allow requests from react frontend to avoid CORS policy restriction
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', 'true'),
-        res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
     res.setHeader("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTONS");
     next();
@@ -37,7 +36,7 @@ app.post(`${EXPRESS_ROUTE}`, async (req, res) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${OPEN_API_KEY}`,
+            "Authorization": `Bearer ${OPEN_API_KEY}`,
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",

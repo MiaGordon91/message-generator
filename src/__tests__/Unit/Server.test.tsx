@@ -4,13 +4,7 @@ import app from '../../../api/index';
 
 const request = require("supertest");
 
-// const getPostResponse = require('./testDate/getPostResponse');
-// import getPostResponse from './testData/getPostResponse';
-
-// Test that a post request to the external API will return expected
-// response via the fetch request
-
-describe("POST /", () => {
+describe("Test post request to external api and response from fetch call", () => {
 
     const data = [
         {
@@ -42,14 +36,14 @@ describe("POST /", () => {
 
     beforeAll((done) => {
         fetchMock.resetMocks();
-        server = app.listen(8000, done); // Start the server before running tests
+        server = app.listen(12000, done); // Start the server before running tests
     });
     
     afterAll((done) => {
         server.close(done); // Close the server after all tests are done
-        });
+    });
 
-    it("responds with correct response", async () => {
+    it("post data to external api and return expected response via fetch call", async () => {
         const mockRequest = { body: 
             {message: "Write me a birthday message for my Grandad.Please cap message to 80 words max"}};
         const mockResponse = {data};
@@ -66,4 +60,16 @@ describe("POST /", () => {
         expect(response.status).toEqual(200);
     });
 
-});
+
+    it("incorrect endpoint breaks post request", async () => {
+        const requestMessage = {body: 
+            {message: "Write me a birthday message for my Grandma.Please cap message to 80 words max"}};
+    
+        // use supertest to call an incorrect endpoint in post request
+        const response = await request(app)
+            .post('/test')
+            .send(requestMessage.body)
+        
+        expect(response.status).toBe(404);
+    });
+}); 

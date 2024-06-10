@@ -1,4 +1,3 @@
-export {};
 import path from "path";
 import dotenv from "dotenv";
 import express from "express";
@@ -79,4 +78,4 @@ app.post(
 
 app.listen(PORT, () => console.log("Your server is running on PORT " + PORT));
 
-module.exports = app;
+export default app;
