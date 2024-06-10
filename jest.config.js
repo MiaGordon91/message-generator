@@ -20,5 +20,10 @@ module.exports = {
     ],
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
   testEnvironment: 'jsdom',
+  moduleDirectories: ['node_modules', '__mocks__'],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
 };
