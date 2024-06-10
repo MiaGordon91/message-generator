@@ -8,6 +8,7 @@ import {
 import { IconButton } from "@chakra-ui/react";
 import { ArrowDownIcon } from "@chakra-ui/icons";
 import { ChangeEvent, useEffect, useState } from "react";
+import { fetchDataFromServer } from "../services/api";
 
 interface Props {
   textInput: string;
@@ -53,15 +54,12 @@ const MessageInput = ({
       },
     };
 
-    const { VITE_SERVER_URL } = import.meta.env;
-
+    // const { VITE_SERVER_URL } = import.meta.env;
+    
     try {
-      const response = await fetch(
-        `${VITE_SERVER_URL}`,
-        options
-      );
-      const data = await response.json();
-      onDataReceived(data.choices[0].message);
+      const response = await fetchDataFromServer(options);
+      const jsonData = await response.json();
+      onDataReceived(jsonData.choices[0].message);
       setInput("");
       setShowLoader(false);
     } catch (error) {
@@ -76,11 +74,12 @@ const MessageInput = ({
           <InputGroup size="sm">
             <InputRightElement p={[17, 25]}>
               <IconButton
+                id="submitMessage"
                 icon={<ArrowDownIcon />}
                 size={["xs", "sm"]}
                 colorScheme="#757575"
                 variant="outline"
-                aria-label={"Submit message"}
+                aria-label="Submit message"
                 onClick={getMessage}
                 isLoading={showLoader}></IconButton>
             </InputRightElement>
